@@ -35,13 +35,11 @@ void copiaValoresDoVetorParaVetor(int* vetA, int* vetB, int size)
 
 // 3. Escreva uma função que receba um vetor de inteiros e o tamanho 
 // do vetor. A função deverá inverter a ordem dos elementos do vetor.
-
-// 4. Escreva uma função que receba um vetor de inteiros e o tamanho do
-// vetor. A função deverá ordenar os elementos (implemente, por exemplo, bubble sort).
 void inverterOrdem(int* vet, int size)
 {
+    int* init = vet;
     int* vetFim = vet + size -1;
-    for(int i = 0; i < size; i++)
+    while(vet < vetFim)
     {
         int tmp = *vet;
         *vet = *vetFim;
@@ -52,7 +50,39 @@ void inverterOrdem(int* vet, int size)
     }
     for(int i = 0; i < size; i++)
     {
+        printf("Vet[%d] = %d\n", i, *init);
+        init++;
+    }
+}
+
+// 4. Escreva uma função que receba um vetor de inteiros e o tamanho do
+// vetor. A função deverá ordenar os elementos (implemente, por exemplo, bubble sort).
+void ordenarVetor(int* vet, int size)
+{
+    int* p1;
+    int* p2;
+    for (int i = 0; i < size; i++)
+    {
+        p1 = vet;
+        p2 = p1 + 1;
+        for (int j = 0; j < size; j++)
+        {
+            if (*p1 > *p2)
+            {
+                int temp = *p1;
+                *p1 = *p2;
+                *p2 = temp;
+            }
+
+            p1++;
+            p2++;
+        }
+    }
+
+    for(int i = 0; i < size; i++)
+    {
         printf("Vet[%d] = %d\n", i, *vet);
+        vet++;
     }
 }
 
@@ -74,6 +104,11 @@ int main()
     // Exercício 3
     printf("Exercício 3:\n");
     inverterOrdem(vet, 5);
+
+    // Exercício 4
+    printf("Exercício 4:\n");
+    int vetUn[5] = { 2, 3, 5, 7, 1 };
+    ordenarVetor(vetUn, 5);
 
     return 1;
 }

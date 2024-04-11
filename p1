@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+void subVets(int* vetOrig, int* vetInis, int* vetTams, int*total);
+
+int main()
+{   
+    int MAX = 11;
+    int* vetOriginal[] = {11, 2, 0, 1, 6, 1, 0, 0, 1, 1, 1};
+    int* vetInicios[11];
+    int* vetTamanhos[11];
+    int totalSubVets;
+
+    subVets(&vetOriginal, &vetInicios, &vetTamanhos, &totalSubVets);
+    printf("%d", totalSubVets);
+
+
+}
+
+void subVets(int* vetOrig, int* vetInis, int* vetTams, int*total)
+{
+    int tam = *vetOrig;
+    int* vet = vetOrig;
+    *total = 0;
+
+    int count = 0;
+    while(vet < vet + tam)
+    {
+        vet++;
+        count++;
+
+        *vetTams = *vet;
+        *vetInis = count + 1;
+
+        vetTams++;
+        vetInis++;
+
+        vet += *vet;
+        *total++;
+    }
+}
